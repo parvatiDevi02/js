@@ -1,0 +1,60 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Numbers change</h1>
+    <img src="zero.png" id='img2'  style="width: 100px">
+    <button type="button" onclick="document.getElementById('img2').src='four.jpg'">
+        change image
+    </button>
+    <button type="button" onclick="document.getElementById('img2').src='six.jpeg'">
+        change image
+         </button>
+
+    
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id='btn'>click me</button>
+    <h1>click event example</h1>
+    <div id="para">
+        <p>
+            heyyy youuuu haiiiiiiiiiii
+        </p>
+    </div>
+    
+</body>
+<script>
+    let btn1 = document.getElementById('btn');
+    function btn_click(){
+        document.body.style.backgroundcolor = 'blue';
+        document.body.style.color = 'white';
+        console.log('button submitted');
+    }
+    btn1.addEventListener('click',btn_click);
+     let para1=document.getElementById('para');
+    para1.addEventListener('mouseover',()=>{
+        para1.style.backgroundColor = 'green';
+        para1.style.fontSize = '2em';
+    }) 
+    para1.addEventListener('mouseout',()=>{
+        para1.style.backgroundColor = 'white';
+        para1.style.fontSize = '1em';
+        para1.style.color='red';
+    })
+
+
+      
+</script>
+</html>

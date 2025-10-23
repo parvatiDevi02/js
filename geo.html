@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 Features Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    #map, #canvasContainer, #dragDrop {
+      margin-top: 20px;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+    }
+
+    #drag {
+      width: 100px;
+      height: 100px;
+      background: lightcoral;
+      text-align: center;
+      line-height: 100px;
+      cursor: grab;
+      border-radius: 10px;
+    }
+
+    #drop {
+      width: 200px;
+      height: 150px;
+      border: 2px dashed #999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+
+    canvas {
+      border: 2px solid #333;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 8px 15px;
+      background: #007bff;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0066b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌐 HTML5 Feature Showcase</h1>
+
+  <section id="map">
+    <h2>📍 Geolocation</h2>
+    <p id="geoResult">Click below to get your location:</p>
+    <button onclick="getLocation()">Get Location</button>
+  </section>
+
+  <!-- 🎨 CANVAS -->
+  <section id="canvasContainer">
+    <h2>🎨 Canvas Drawing</h2>
+    <canvas id="myCanvas" width="300" height="150"></canvas>
+    <!-- <div id="normal"></div> -->
+  </section>
+
+  <!-- 🧩 DRAG & DROP -->
+  <section id="dragDrop">
+    <h2>🧩 Drag & Drop API</h2>
+    <div id="drag" draggable="true">Drag Me</div>
+    <div id="drop">Drop Here</div>
+  </section>
+
+  <script>
+    /* 🌍 GEOLOCATION */
+    function getLocation() {
+      const output = document.getElementById("geoResult");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            output.innerHTML = `Latitude: ${pos.coords.latitude.toFixed(4)} <br>Longitude: ${pos.coords.longitude.toFixed(4)}`;
+          },
+          () => {
+            output.innerText = "Unable to retrieve location.";
+          }
+        );
+      } else {
+        output.innerText = "Geolocation not supported in this browser.";
+      }
+    }
+
+    /* 🎨 CANVAS */
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(10, 10, 120, 80);
+    ctx.strokeStyle = "darkblue";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(10, 10, 120, 80);
+    ctx.fillStyle = "black";
+    ctx.font = "16px Arial";
+    ctx.fillText("Hello Canvas!", 140, 60);
+
+    /* 🧩 DRAG & DROP */
+    const drag = document.getElementById("drag");
+    const drop = document.getElementById("drop");
+
+    drag.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("text", drag.id);
+    });
+
+    drop.addEventListener("dragover", (e) => e.preventDefault());
+
+    drop.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const data = e.dataTransfer.getData("text");
+      const draggedEl = document.getElementById(data);
+      drop.appendChild(draggedEl);
+      drop.style.border = "2px solid green";
+      drop.innerHTML = "✅ Dropped!";
+    });
+
+    /* 🧠 SERVICE WORKER for OFFLINE SUPPORT */
+    // if ("serviceWorker" in navigator) {
+    //   window.addEventListener("load", () => {
+    //     navigator.serviceWorker.register("sw.js")
+    //       .then(() => console.log("Service Worker Registered"))
+    //       .catch(err => console.log("SW Registration Failed:", err));
+    //   });
+    // }
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
